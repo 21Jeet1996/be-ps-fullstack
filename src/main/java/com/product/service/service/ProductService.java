@@ -2,7 +2,9 @@ package com.product.service.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.product.service.model.Product;
@@ -20,19 +22,24 @@ public class ProductService {
 		this.productRepository = productRepository;
 	}
 
-	public List<Product> getAllProducts() {
-		return productRepository.findAll();
+	@Async
+	public CompletableFuture<List<Product>> getAllProducts() {
+		return CompletableFuture.completedFuture(productRepository.findAll());
 	}
 
-	public Optional<Product> getProductById(Long id) {
-		return productRepository.findById(id);
+	@Async
+	public CompletableFuture<Optional<Product>> getProductById(Long id) {
+		return CompletableFuture.completedFuture(productRepository.findById(id));
 	}
 
-	public Product saveProduct(Product product) {
-		return productRepository.save(product);
+	@Async
+	public CompletableFuture<Product> saveProduct(Product product) {
+		return CompletableFuture.completedFuture(productRepository.save(product));
 	}
 
-	public void deleteProduct(Long id) {
+	@Async
+	public CompletableFuture<Void> deleteProduct(Long id) {
 		productRepository.deleteById(id);
+		return CompletableFuture.completedFuture(null);
 	}
 }

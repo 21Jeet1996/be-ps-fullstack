@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service-be-fullstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-service-be-fullstack  # 👈 Must match template labels
+  template:
+    metadata:
+      labels:
+        app: product-service-be-fullstack  # 👈 Must match selector labels
+    spec:
+      containers:
+        - name: product-service-container
+          image: jaiswaramarjeet19876/product-service-be-fullstack:latest
+          ports:
+            - containerPort: 8080
