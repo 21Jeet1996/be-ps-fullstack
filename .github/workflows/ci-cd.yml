@@ -32,6 +32,17 @@ jobs:
           distribution: 'temurin'  # Required field
           java-version: '17'
 
+      - name: Wait for MySQL
+        run: |
+          for i in {1..30}; do
+            if mysql -h127.0.0.1 -uroot -proot -e 'SELECT 1'; then
+              echo "MySQL is up!"
+              break
+            fi
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
       - name: Build with Maven
         run: mvn clean package
 
