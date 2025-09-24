@@ -1,9 +1,9 @@
 #version: '3.8'
 services:
   product-service:
-    build: .
+    #build: .
     #container_name: be
-    image: product-service-be
+    image: amarjeet/product-service:latest
     ports:
       - "8080:8080"
     depends_on:
