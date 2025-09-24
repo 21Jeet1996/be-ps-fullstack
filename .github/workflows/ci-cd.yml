@@ -12,15 +12,15 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_DATABASE: root
           MYSQL_ROOT_PASSWORD: techbankRootPsw
+          MYSQL_DATABASE: productService
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping"
+          --health-cmd="mysqladmin ping -h localhost -uroot -ptechbankRootPsw"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=3
+          --health-retries=5
 
     steps:
       - name: Checkout Code
@@ -29,13 +29,13 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'  # Required field
+          distribution: 'temurin'
           java-version: '17'
 
       - name: Wait for MySQL
         run: |
           for i in {1..30}; do
-            if mysql -h127.0.0.1 -uroot -proot -e 'SELECT 1'; then
+            if mysql -h127.0.0.1 -uroot -ptechbankRootPsw -e 'SELECT 1'; then
               echo "MySQL is up!"
               break
             fi
