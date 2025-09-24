@@ -54,8 +54,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t amarjeet/product-service:latest .
-          docker push amarjeet/product-service:latest
+          docker build -t jaiswaramarjeet19876/product-service:latest .
+          docker push jaiswaramarjeet19876/product-service:latest
 
       - name: Deploy via SSH using Docker Compose
         uses: appleboy/ssh-action@v0.1.10
