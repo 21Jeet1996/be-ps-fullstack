@@ -7,7 +7,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    env:
+      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/productService
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: techbankRootPsw
     services:
       mysql:
         image: mysql:8.0
