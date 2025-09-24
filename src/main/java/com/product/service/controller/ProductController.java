@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.product.service.model.Product;
@@ -56,5 +58,16 @@ public class ProductController {
 	@DeleteMapping("/{id}")
 	public CompletableFuture<Void> deleteProduct(@PathVariable Long id) {
 		return productService.deleteProduct(id);
+	}
+	
+	@GetMapping("/getBulkRecord")
+	public List<Product> searchBulk(){
+		System.out.println("hi");
+		return productService.getBundleData();
+	}
+	
+	@GetMapping("/getPage")
+	public Page<Product> getPage(/* @RequestParam int page, @RequestParam int size */){
+		return productService.getPage();
 	}
 }

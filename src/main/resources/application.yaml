@@ -3,7 +3,7 @@ spring:
     console:
       enabled: true # Enable H2 console
   datasource:
-    url: jdbc:mysql://localhost:3306/productService?autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/productService
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: techbankRootPsw

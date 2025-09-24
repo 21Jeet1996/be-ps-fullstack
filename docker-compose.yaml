@@ -2,7 +2,8 @@
 services:
   product-service:
     build: .
-    container_name: product-service-be-fullstack
+    #container_name: be
+    image: product-service-be
     ports:
       - "8080:8080"
     depends_on:

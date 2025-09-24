@@ -1,19 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product-service-be-fullstack
+  name: product-service-product-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product-service-be-fullstack  # 👈 Must match template labels
+      app: product-service-product-service  # 👈 Must match template labels
   template:
     metadata:
       labels:
-        app: product-service-be-fullstack  # 👈 Must match selector labels
+        app: product-service-product-service  # 👈 Must match selector labels
     spec:
       containers:
-        - name: product-service-container
-          image: jaiswaramarjeet19876/product-service-be-fullstack:latest
+        - name: product-service-product-service
+          image: jaiswaramarjeet19876/product-service-product-service:latest
+          env:
+          - SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/productService
+          - SPRING_DATASOURCE_USERNAME: root
+          - SPRING_DATASOURCE_PASSWORD: techbankRootPsw
           ports:
             - containerPort: 8080
