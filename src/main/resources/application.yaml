@@ -1,21 +1,15 @@
 spring:
-  h2:
-    #console:
-    #  enabled: true # Enable H2 console
   datasource:
     url: jdbc:mysql://mysql:3306/productService
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: techbankRootPsw
-    hikari:
-      maximum-pool: 20
-      connection-timeout: 30000
-      idle-timeout: 60000
-      max-lifetime: 1800000
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  batch:
+    initialize-schema: never
   application:
     name: product-service
 
